@@ -20,3 +20,6 @@ class Tecido(Base):
     peso_liquido = Column(Numeric(18, 5), nullable=False)
     peso_bruto = Column(Numeric(18, 5), nullable=False)
     largura = Column(Numeric(18, 5), nullable=False)
+
+# Configuração do banco de dados SQLite (arquivo 'tecidos.db' na mesma pasta)
+engine = create_engine('sqlite:///tecidos.db', echo=True)
