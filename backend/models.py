@@ -1,7 +1,12 @@
-from sqlalchemy import create_engine, Column, String, Numeric, Integer
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Numeric
+from database import Base
 
-Base = declarative_base()
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String(50), unique=True, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
+    is_admin = Column(Boolean, default=False)
 
 class Tecido(Base):
     __tablename__ = "tecidos"
@@ -19,6 +24,5 @@ class Tecido(Base):
     peso_liquido = Column(Numeric(18, 5), nullable=False)
     peso_bruto = Column(Numeric(18, 5), nullable=False)
     largura = Column(Numeric(18, 5), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"))
 
-engine = create_engine("sqlite:///tecidos.db")
-Base.metadata.create_all(engine)
