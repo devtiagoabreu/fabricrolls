@@ -20,4 +20,4 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   } else {
       alert("Login falhou!");
   }
-});
+}); 
